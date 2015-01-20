@@ -1,0 +1,191 @@
+const int sensorPin = A0; // Analog Pin of the sensor
+const float lowTemp = 14.0;  // Reference for led lights up
+const float highTemp = 30.0;
+int cursor = 2;
+
+void setup(){
+  
+  Serial.begin(9600); // Open serial port al 9600 bauds
+  
+  for(int pinNumber = 2 ; pinNumber<14 ; pinNumber++ ){ // Iterate LEDs pins
+    pinMode(pinNumber,OUTPUT); // Get it on OUTPUT
+    digitalWrite(pinNumber, LOW); // Get it lights off
+  }
+}
+
+void loop(){
+  
+  int sensorVal = analogRead(sensorPin); // Read the value of the sensor (0 to 1023)
+  Serial.print("Sensor Value: "); // Print on serial
+  Serial.print(sensorVal); // Print the value on Serial
+  
+  // Convert the ADC reading to voltage
+  float voltage = (sensorVal/1024.0) * 5.0;
+  
+  Serial.print(", Volts: ");
+  Serial.print(voltage);
+  Serial.print(", degree C: ");
+  // Convert the voltage to temperature in degrees
+  float temperature = (voltage - 0.5) * 100;
+  Serial.print(temperature);
+  Serial.print("\n");
+  
+  if(temperature < lowTemp ){ // Out of range: blick led 1
+    for(int cursor = 2 ; cursor < 14 ; cursor++){
+      digitalWrite(cursor, HIGH);
+      delay(1);
+      digitalWrite(cursor-13, LOW);
+      delay(1);
+      digitalWrite(cursor-12, LOW);
+      delay(1);
+      digitalWrite(cursor-11, LOW);
+      delay(1);
+      digitalWrite(cursor-10, LOW);
+      delay(1);
+      digitalWrite(cursor-9, LOW);
+      delay(1);
+      digitalWrite(cursor-8, LOW);
+      delay(1);
+      digitalWrite(cursor-7, LOW);
+      delay(1);
+      digitalWrite(cursor-6, LOW);
+      delay(1);
+      digitalWrite(cursor-5, LOW);
+      delay(1);
+      digitalWrite(cursor-4, LOW);
+      delay(1);
+      digitalWrite(cursor-3, LOW);
+      delay(1);
+      digitalWrite(cursor-2, LOW);
+      delay(1);
+      digitalWrite(cursor-1, LOW); 
+      digitalWrite(cursor, LOW);
+    }
+  }
+  else if(temperature >= highTemp){ // La temperatura esta dins el rang
+    for(int cursor = 2 ; cursor < 14 ; cursor++){
+      digitalWrite(cursor, HIGH); 
+    }
+  }
+  else if(temperature > lowTemp && temperature <= highTemp){ // Temperatura dins el rang
+    if(temperature > 15 && temperature <= 16.5 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        else digitalWrite(cursor, LOW);
+      } 
+    }
+    if(temperature > 16.25 && temperature <= 17.5 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        if(cursor == 3) digitalWrite(cursor, HIGH);
+        if(cursor != 2 && cursor != 3) digitalWrite(cursor, LOW);
+      } 
+    }
+    if(temperature > 17.5 && temperature <= 18.75 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        if(cursor == 3) digitalWrite(cursor, HIGH);
+        if(cursor == 4) digitalWrite(cursor, HIGH);
+        if(cursor != 2 && cursor != 3 && cursor != 4) digitalWrite(cursor, LOW);
+      } 
+    }
+    if(temperature > 18.75 && temperature <= 20.0 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        if(cursor == 3) digitalWrite(cursor, HIGH);
+        if(cursor == 4) digitalWrite(cursor, HIGH);
+        if(cursor == 5) digitalWrite(cursor, HIGH);
+        if(cursor != 2 && cursor != 3 && cursor != 4 && cursor != 5) digitalWrite(cursor, LOW);
+      } 
+    }
+    if(temperature > 20.0 && temperature <= 22.25 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        if(cursor == 3) digitalWrite(cursor, HIGH);
+        if(cursor == 4) digitalWrite(cursor, HIGH);
+        if(cursor == 5) digitalWrite(cursor, HIGH);
+        if(cursor == 6) digitalWrite(cursor, HIGH);
+        if(cursor != 2 && cursor != 3 && cursor != 4 && cursor != 5 && cursor != 6) digitalWrite(cursor, LOW);
+      } 
+    }
+    if(temperature > 22.25 && temperature <= 23.75 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        if(cursor == 3) digitalWrite(cursor, HIGH);
+        if(cursor == 4) digitalWrite(cursor, HIGH);
+        if(cursor == 5) digitalWrite(cursor, HIGH);
+        if(cursor == 6) digitalWrite(cursor, HIGH);
+        if(cursor == 7) digitalWrite(cursor, HIGH);
+        if(cursor != 2 && cursor != 3 && cursor != 4 && cursor != 5 && cursor != 6 && cursor != 7) digitalWrite(cursor, LOW);
+      } 
+    }
+    if(temperature > 23.75 && temperature <= 25 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        if(cursor == 3) digitalWrite(cursor, HIGH);
+        if(cursor == 4) digitalWrite(cursor, HIGH);
+        if(cursor == 5) digitalWrite(cursor, HIGH);
+        if(cursor == 6) digitalWrite(cursor, HIGH);
+        if(cursor == 7) digitalWrite(cursor, HIGH);
+        if(cursor == 8) digitalWrite(cursor, HIGH);
+        if(cursor != 2 && cursor != 3 && cursor != 4 && cursor != 5 && cursor != 6 && cursor != 7 && cursor != 8) digitalWrite(cursor, LOW);
+      } 
+    }
+    if(temperature > 25 && temperature <= 26.25 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        if(cursor == 3) digitalWrite(cursor, HIGH);
+        if(cursor == 4) digitalWrite(cursor, HIGH);
+        if(cursor == 5) digitalWrite(cursor, HIGH);
+        if(cursor == 6) digitalWrite(cursor, HIGH);
+        if(cursor == 7) digitalWrite(cursor, HIGH);
+        if(cursor == 8) digitalWrite(cursor, HIGH);
+        if(cursor == 9) digitalWrite(cursor, HIGH);
+        if(cursor != 2 && cursor != 3 && cursor != 4 && cursor != 5 && cursor != 6 && cursor != 7 && cursor != 8 && cursor != 9) digitalWrite(cursor, LOW);
+      } 
+    }
+    if(temperature > 26.25 && temperature <= 27.50 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        if(cursor == 3) digitalWrite(cursor, HIGH);
+        if(cursor == 4) digitalWrite(cursor, HIGH);
+        if(cursor == 5) digitalWrite(cursor, HIGH);
+        if(cursor == 6) digitalWrite(cursor, HIGH);
+        if(cursor == 7) digitalWrite(cursor, HIGH);
+        if(cursor == 8) digitalWrite(cursor, HIGH);
+        if(cursor == 9) digitalWrite(cursor, HIGH);
+        if(cursor == 10) digitalWrite(cursor, HIGH);
+        if(cursor != 2 && cursor != 3 && cursor != 4 && cursor != 5 && cursor != 6 && cursor != 7 && cursor != 8 && cursor != 9 && cursor != 10) digitalWrite(cursor, LOW);
+      } 
+    }
+    if(temperature > 27.50 && temperature <= 28.75 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        if(cursor == 3) digitalWrite(cursor, HIGH);
+        if(cursor == 4) digitalWrite(cursor, HIGH);
+        if(cursor == 5) digitalWrite(cursor, HIGH);
+        if(cursor == 6) digitalWrite(cursor, HIGH);
+        if(cursor == 7) digitalWrite(cursor, HIGH);
+        if(cursor == 8) digitalWrite(cursor, HIGH);
+        if(cursor == 9) digitalWrite(cursor, HIGH);
+        if(cursor == 10) digitalWrite(cursor, HIGH);
+        if(cursor != 2 && cursor != 3 && cursor != 4 && cursor != 5 && cursor != 6 && cursor != 7 && cursor != 8 && cursor != 9 && cursor != 10) digitalWrite(cursor, LOW);
+      } 
+    }
+    if(temperature > 28.75 && temperature <= 30 ){
+      for(int cursor = 2 ; cursor < 14 ; cursor++){
+        if(cursor == 2) digitalWrite(cursor, HIGH);
+        if(cursor == 3) digitalWrite(cursor, HIGH);
+        if(cursor == 4) digitalWrite(cursor, HIGH);
+        if(cursor == 5) digitalWrite(cursor, HIGH);
+        if(cursor == 6) digitalWrite(cursor, HIGH);
+        if(cursor == 7) digitalWrite(cursor, HIGH);
+        if(cursor == 8) digitalWrite(cursor, HIGH);
+        if(cursor == 9) digitalWrite(cursor, HIGH);
+        if(cursor == 10) digitalWrite(cursor, HIGH);
+        if(cursor == 11) digitalWrite(cursor, HIGH);
+        if(cursor != 2 && cursor != 3 && cursor != 4 && cursor != 5 && cursor != 6 && cursor != 7 && cursor != 8 && cursor != 9 && cursor != 10 && cursor != 11) digitalWrite(cursor, LOW);
+      } 
+    }
+  }
+}
